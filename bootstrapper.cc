@@ -1,7 +1,7 @@
 // Copyright 2014 the V8 project authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-
+#pragma GCC diagnostic ignored "-Wunused-variable" 
 #include "src/bootstrapper.h"
 
 #include "src/accessors.h"
@@ -2540,7 +2540,7 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
         DCHECK_EQ(JSRegExp::kExecFunctionDescriptorIndex,
                   prototype->map()->LastAdded());
 
-        native_context()->set_regexp_exec_function(*fun);
+//        native_context()->set_regexp_exec_function(*fun);
       }
 
       SimpleInstallGetter(isolate_, prototype, factory->dotAll_string(),
@@ -2590,7 +2590,7 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
 
       // Store the initial RegExp.prototype map. This is used in fast-path
       // checks. Do not alter the prototype after this point.
-      native_context()->set_regexp_prototype_map(*prototype_map);
+//      native_context()->set_regexp_prototype_map(*prototype_map);
     }
 
     {
@@ -2675,15 +2675,15 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
       Handle<JSFunction> function =
           SimpleCreateFunction(isolate_, isolate_->factory()->empty_string(),
                                Builtins::kRegExpInternalMatch, 2, true);
-      native_context()->set(Context::REGEXP_INTERNAL_MATCH, *function);
+//      native_context()->set(Context::REGEXP_INTERNAL_MATCH, *function);
     }
 
     // Create the last match info. One for external use, and one for internal
     // use when we don't want to modify the externally visible match info.
     Handle<RegExpMatchInfo> last_match_info = factory->NewRegExpMatchInfo();
-    native_context()->set_regexp_last_match_info(*last_match_info);
+//    native_context()->set_regexp_last_match_info(*last_match_info);
     Handle<RegExpMatchInfo> internal_match_info = factory->NewRegExpMatchInfo();
-    native_context()->set_regexp_internal_match_info(*internal_match_info);
+//    native_context()->set_regexp_internal_match_info(*internal_match_info);
 
     // Force the RegExp constructor to fast properties, so that we can use the
     // fast paths for various things like
